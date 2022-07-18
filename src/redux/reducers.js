@@ -15,3 +15,5 @@ function useReducer(state = initialState, action) {
             return state;
     }
 }
+
+export default useReducer;

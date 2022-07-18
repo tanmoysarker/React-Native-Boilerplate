@@ -31,7 +31,7 @@ function TabRoutes() {
             }}
         >
             <Tab.Screen
-                name={navigationStrings.HOME} component={HomeStack}
+                name={'One'} component={HomeStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -45,7 +45,7 @@ function TabRoutes() {
                 }}
             />
             <Tab.Screen
-                name={navigationStrings.EXPLORE}
+                name={'Two'}
                 component={ExploreStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
@@ -63,7 +63,7 @@ function TabRoutes() {
             />
 
             <Tab.Screen
-                name={navigationStrings.PROFILE}
+                name={'Three'}
                 component={PorfileStack}
                 options={{
                     tabBarIcon: ({ focused }) => {

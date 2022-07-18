@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Routes from './src/navigation/Routes';
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
@@ -10,6 +10,7 @@ const App = () => {
     <Provider store={Store}>
       <View style={{ flex: 1 }}>
           <Routes />
+          <Text>dvfdvfdvd</Text>
       </View>
     </Provider>
    
