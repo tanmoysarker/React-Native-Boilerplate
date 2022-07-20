@@ -39,7 +39,7 @@ const Home = ({ navigation }) => {
             alignItems: 'flex-end',
             padding: 10
           }}>
-          <Text style={{ color: '#808080' }}>by Handi.dev</Text>
+          <Text style={{ color: '#808080' }}>by Tanmoy</Text>
         </View>
       </SafeAreaView>
     </>

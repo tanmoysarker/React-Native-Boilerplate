@@ -40,7 +40,9 @@ const Home = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.buttonStyle}
-              onPress={() => dispatch(fetchUser())}>
+              // onPress={() => dispatch(fetchUser())}
+              onPress={() => navigation.toggleDrawer()}
+            >
               <Text style={styles.text}>Click here to show User data:</Text>
             </TouchableOpacity>
             <ListUser />
