@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import {
   StyleSheet,
   Text,
-  useColorScheme,
   View,
   Image
 } from 'react-native'
@@ -55,7 +54,7 @@ const App = () => {
     return (
       <View style={styles.buttonCircle}>
         <Icon
-          name="md-arrow-round-forward"
+          name="arrow-forward-outline"
           color="rgba(255, 255, 255, .9)"
           size={24}
         />
@@ -76,7 +75,7 @@ const App = () => {
   };
 
   const _onDone = () => {
-    setShowRealApp(false);
+    setShowRealApp(true);
   }
 
   return (
