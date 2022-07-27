@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import { store } from './stores/index'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Login from './screens/Login/LoginScreen';
 
 
 const slides = [
@@ -86,12 +87,13 @@ const App = () => {
         <MainNavigation />
       </Provider>
        :
-       <AppIntroSlider 
-        renderItem={_renderItem} 
-        data={slides} onDone={_onDone} 
-        renderDoneButton={_renderDoneButton}
-        renderNextButton={_renderNextButton}
-       />
+      //  <AppIntroSlider 
+      //   renderItem={_renderItem} 
+      //   data={slides} onDone={_onDone} 
+      //   renderDoneButton={_renderDoneButton}
+      //   renderNextButton={_renderNextButton}
+      //  />
+      <Login/>
    }
    </>
   )

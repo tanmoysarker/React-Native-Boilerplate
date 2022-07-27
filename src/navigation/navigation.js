@@ -8,9 +8,12 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons'
+
 import Home from '../screens/Home/Home.screen'
 import Profile from '../screens/Profile/Profile.screen'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Login from '../screens/Login/LoginScreen'
+
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -49,6 +52,7 @@ const MyStack = () => {
       // screenOptions={screenOptionStyle}
     >
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 }
