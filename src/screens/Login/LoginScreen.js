@@ -13,6 +13,8 @@ import {
 // import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import axios from "axios";
+const API_URL = "https://customauthapi.herokuapp.com/api/";
 
 
 
@@ -25,9 +27,52 @@ const SLIDE_HEIGHT = 0.61 * height;
 const Login = ({ navigation }) => {
   const [text, onChangeText] = React.useState("Email");
   const [password, onChangePassword] = React.useState("Password");
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const onPressButton = () => {
-    console.log('Pressed')
+  const register = (username, email, password) => {
+    return axios.post(API_URL + "signup", {
+      username,
+      email,
+      password,
+    });
+  };
+  // const login = () => {
+  //   console.log(API_URL + "user/login");
+  //   console.log("text", text);
+  //   console.log("password ", password);
+  //   return axios
+  //     .post(API_URL + "user/login", {
+  //       text,
+  //       password,
+  //     })
+  //     .then(async(response) => {
+  //       await console.log('Response>>>', response);
+  //       // if (response.data.accessToken) {
+  //       //   localStorage.setItem("user", JSON.stringify(response.data));
+  //       // }
+  //       // return response.data;
+  //     });
+  // };
+
+  const onPressButton = async (event) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(API_URL + "user/login", {
+        text,
+        password,
+      });
+      // if (response.status === 201) {
+        console.log(` You have created:`,response);
+        setIsLoading(false);
+        // setFullName('');
+        // setEmail('');
+      // } else {
+      //   throw new Error("An error has occurred");
+      // }
+    } catch (error) {
+      alert("An error has occurred");
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -140,4 +185,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login
+export default Login;
