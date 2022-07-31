@@ -5,12 +5,13 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  Alert
+  Alert,
+  Settings
 } from 'react-native'
 import styles from '../Home/Home.style'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const Profile = ({ navigation }) => {
+const Setting = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#f9f9f9'} />
@@ -26,16 +27,24 @@ const Profile = ({ navigation }) => {
                 this is{' '}
                 <Text style={{ fontWeight: 'bold', color: 'green' }}>
                   {' '}
-                  PROFILE{' '}
+                  Setting{' '}
                 </Text>{' '}
                 screen
               </Text>
             </TouchableOpacity>
           </View>
         </View>
+        <View
+          style={{
+            alignContent: 'flex-end',
+            alignItems: 'flex-end',
+            padding: 10
+          }}>
+          <Text style={{ color: '#808080' }}>by Tanmoy</Text>
+        </View>
       </SafeAreaView>
     </>
   )
 }
 
-export default Profile
+export default Setting

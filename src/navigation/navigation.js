@@ -9,10 +9,13 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from '../screens/Home/Home.screen'
 import Profile from '../screens/Profile/Profile.screen'
 import Login from '../screens/Login/LoginScreen'
+import Setting from '../screens/Setting/SettingScreen'
+import RegisterScreen from '../screens/Login/RegisterScreen'
 
 
 const Stack = createNativeStackNavigator()
@@ -33,8 +36,18 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Stats"
         component={Profile}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Icon name={'ios-stats-chart'} size={25} color={color} />
+          }
+        }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={Setting}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
@@ -46,14 +59,44 @@ function MyTabs() {
   )
 }
 
+var asyncValue;
+const getData = async () => {
+  try {
+    asyncValue = await AsyncStorage.getItem('auth')
+    if (value !== null) {
+      // value previously stored
+    }
+  } catch (e) {
+    // error reading value
+  }
+}
+getData();
+
+
+const LoginStack = () => {
+  return (
+    <Stack.Navigator
+    >
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerShown: false }} />
+
+
+
+    </Stack.Navigator >
+  );
+}
+
 const MyStack = () => {
   return (
-    <Stack.Navigator 
-      // screenOptions={screenOptionStyle}
+    <Stack.Navigator
     >
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Login" component={Login} />
-    </Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+
+
+
+    </Stack.Navigator >
   );
 }
 
@@ -75,13 +118,21 @@ function CustomDrawerContent(props) {
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator initialRouteName="Home"
+    <Drawer.Navigator initialRouteName="Login"
       useLegacyImplementation
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-        <Drawer.Screen name="Home" component={MyTabs} />
-        <Drawer.Screen name="Profile" component={MyStack} />
-      </Drawer.Navigator>
+      {/* {asyncValue === 'logged'
+        ? */}
+      <Drawer.Screen name="Login" header={null} component={LoginStack} options={{ headerShown: false }} />
+      {/* :
+        <> */}
+      <Drawer.Screen name="Home" component={MyTabs} />
+      <Drawer.Screen name="Profile" header={null} component={MyStack} options={{ headerShown: false }} />
+      {/* </>
+
+      } */}
+    </Drawer.Navigator>
   )
 }
 
@@ -90,7 +141,7 @@ function MyDrawer() {
 const MainNavigation = () => {
   return (
     <NavigationContainer>
-       <MyDrawer/>
+      <MyDrawer />
       {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="HomeBase"

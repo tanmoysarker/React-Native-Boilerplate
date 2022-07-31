@@ -14,11 +14,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
-import { useNavigation } from '@react-navigation/native';
-
-
-
-
 const API_URL = "https://customauthapi.herokuapp.com/api/";
 
 
@@ -29,12 +24,10 @@ const aspectRatio = 750 / 1125;
 // const height =  width * aspectRatio ;
 const SLIDE_HEIGHT = 0.61 * height;
 
-const Login = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [text, onChangeText] = React.useState("Email");
   const [password, onChangePassword] = React.useState("Password");
   const [isLoading, setIsLoading] = React.useState(false);
-
-  // const navigationP = useNavigation(); 
 
   const register = (username, email, password) => {
     return axios.post(API_URL + "signup", {
@@ -62,29 +55,24 @@ const Login = ({ navigation }) => {
   // };
 
   const onPressButton = async (event) => {
-    navigation.navigate('Home');
-    // setIsLoading(true);
-    // try {
-    //   const response = await axios.post(API_URL + "user/login", {
-    //     text,
-    //     password,
-    //   });
-    //   // if (response.status === 201) {
-    //     console.log(` You have created:`,response);
-    //     setIsLoading(false);
-    //     // setFullName('');
-    //     // setEmail('');
-    //   // } else {
-    //   //   throw new Error("An error has occurred");
-    //   // }
-    // } catch (error) {
-    //   alert("An error has occurred");
-    //   setIsLoading(false);
-    // }
-  }
-
-  const onPressRegister = () => {
-    navigation.navigate('RegisterScreen');
+    setIsLoading(true);
+    try {
+      const response = await axios.post(API_URL + "user/login", {
+        text,
+        password,
+      });
+      // if (response.status === 201) {
+        console.log(` You have created:`,response);
+        setIsLoading(false);
+        // setFullName('');
+        // setEmail('');
+      // } else {
+      //   throw new Error("An error has occurred");
+      // }
+    } catch (error) {
+      alert("An error has occurred");
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -92,7 +80,7 @@ const Login = ({ navigation }) => {
       <View style={styles.slider}>
         <View style={{ width }}>
           <View style={styles.titleContainer}>
-            <Text style={{ fontSize: 80, color: 'white', textAlign: 'center', lineHeight: 80 }}>Login</Text>
+            <Text style={{ fontSize: 80, color: 'white', textAlign: 'center', lineHeight: 80 }}>Register</Text>
           </View>
         </View>
       </View>
@@ -110,7 +98,7 @@ const Login = ({ navigation }) => {
             value={password}
           />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15, marginTop: 15 }}>
-            <TouchableOpacity onPress={onPressRegister}>
+            <TouchableOpacity>
               <Text style={{ color: '#47474D' }}>Create a new account ?</Text>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -184,4 +172,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default RegisterScreen;
