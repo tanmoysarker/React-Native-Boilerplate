@@ -10,8 +10,7 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native'
-// import styles from './styles';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Feather'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 const API_URL = "https://customauthapi.herokuapp.com/api/";
@@ -25,6 +24,7 @@ const aspectRatio = 750 / 1125;
 const SLIDE_HEIGHT = 0.61 * height;
 
 const RegisterScreen = ({ navigation }) => {
+  const [name, onChangeName] = React.useState("Name");
   const [text, onChangeText] = React.useState("Email");
   const [password, onChangePassword] = React.useState("Password");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -36,23 +36,6 @@ const RegisterScreen = ({ navigation }) => {
       password,
     });
   };
-  // const login = () => {
-  //   console.log(API_URL + "user/login");
-  //   console.log("text", text);
-  //   console.log("password ", password);
-  //   return axios
-  //     .post(API_URL + "user/login", {
-  //       text,
-  //       password,
-  //     })
-  //     .then(async(response) => {
-  //       await console.log('Response>>>', response);
-  //       // if (response.data.accessToken) {
-  //       //   localStorage.setItem("user", JSON.stringify(response.data));
-  //       // }
-  //       // return response.data;
-  //     });
-  // };
 
   const onPressButton = async (event) => {
     setIsLoading(true);
@@ -82,6 +65,9 @@ const RegisterScreen = ({ navigation }) => {
           <View style={styles.titleContainer}>
             <Text style={{ fontSize: 80, color: 'white', textAlign: 'center', lineHeight: 80 }}>Register</Text>
           </View>
+          <TouchableOpacity style={styles.iconRight} onPress={() => navigation.goBack()}>
+            <Icon name={'arrow-left-circle'} size={45} color={'#FFFFFF'}/>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer}>
@@ -89,6 +75,11 @@ const RegisterScreen = ({ navigation }) => {
         <View style={{ flex: 1, backgroundColor: 'white', borderTopLeftRadius: 75 }}>
           <TextInput
             style={styles.input}
+            onChangeText={onChangeName}
+            value={name}
+          />
+          <TextInput
+            style={styles.secondInput}
             onChangeText={onChangeText}
             value={text}
           />
@@ -97,7 +88,7 @@ const RegisterScreen = ({ navigation }) => {
             onChangeText={onChangePassword}
             value={password}
           />
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15, marginTop: 15 }}>
+          {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15, marginTop: 15 }}>
             <TouchableOpacity>
               <Text style={{ color: '#47474D' }}>Create a new account ?</Text>
             </TouchableOpacity>
@@ -105,10 +96,10 @@ const RegisterScreen = ({ navigation }) => {
               <Text style={{ color: '#47474D' }}>Forgot Password ?</Text>
             </TouchableOpacity>
 
-          </View>
+          </View> */}
 
           <TouchableOpacity style={styles.loginBtn} onPress={onPressButton}>
-            <Text style={styles.loginText}>LOGIN</Text>
+            <Text style={styles.loginText}>Register</Text>
           </TouchableOpacity>
 
           {/* <TouchableOpacity
@@ -144,6 +135,12 @@ const styles = StyleSheet.create({
     { rotate: "90deg" }
     ]
   },
+  iconRight: {
+    alignSelf: 'flex-end',
+    marginTop: 50,
+    position: 'absolute',
+    right: 20
+  },
   input: {
     height: 40,
     margin: 12,
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    marginTop: 30,
+    marginTop: 20,
     borderRadius: 5
   },
   loginBtn: {

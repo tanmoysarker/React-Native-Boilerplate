@@ -43,23 +43,23 @@ const Login = ({ navigation }) => {
       password,
     });
   };
-  // const login = () => {
-  //   console.log(API_URL + "user/login");
-  //   console.log("text", text);
-  //   console.log("password ", password);
-  //   return axios
-  //     .post(API_URL + "user/login", {
-  //       text,
-  //       password,
-  //     })
-  //     .then(async(response) => {
-  //       await console.log('Response>>>', response);
-  //       // if (response.data.accessToken) {
-  //       //   localStorage.setItem("user", JSON.stringify(response.data));
-  //       // }
-  //       // return response.data;
-  //     });
-  // };
+  const login = () => {
+    console.log(API_URL + "user/login");
+    console.log("text", text);
+    console.log("password ", password);
+    return axios
+      .post(API_URL + "user/login", {
+        text,
+        password,
+      })
+      .then(async(response) => {
+        await console.log('Response>>>', response);
+        // if (response.data.accessToken) {
+        //   localStorage.setItem("user", JSON.stringify(response.data));
+        // }
+        // return response.data;
+      });
+  };
 
   const onPressButton = async (event) => {
     navigation.navigate('Home');
